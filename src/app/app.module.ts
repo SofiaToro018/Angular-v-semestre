@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { FacultadesComponent } from './facultades/facultades.component';
+
 
 import { ListarOvasComponentCssComponent } from './ovas/listar-ovas/listar-ovas.component.css/listar-ovas.component.css.component';
 import { ListarOvasComponent } from './ovas/listar-ovas/listar-ovas.component';
@@ -19,6 +23,7 @@ import { DetalleOvaComponent } from './ova/detalle-ova/detalle-ova.component';
   declarations: [
     AppComponent,
 
+
     ListarOvasComponentCssComponent,
     ListarOvasComponent,
     EditarOvasComponent
@@ -29,6 +34,11 @@ import { DetalleOvaComponent } from './ova/detalle-ova/detalle-ova.component';
     CrearOvaComponent,
     DetalleOvaComponent
 
+
+
+    HeaderComponent,
+    FooterComponent
+    FacultadesComponent
 
   ],
   imports: [
