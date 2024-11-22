@@ -1,0 +1,45 @@
+<div class="card mx-auto" style="max-width: 500px;">
+  <div class="card-body">
+    <h5 class="card-title">Crear OVA</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Datos del OVA</h6>
+
+    <form [formGroup]="crearOvaForm" (ngSubmit)="crearOva(crearOvaForm.value)">
+      <div class="row">
+        <div class="col">
+
+          <!--   Campo nombre del OVA   -->
+          <label for="ova">OVA</label>
+          <input id="ova"
+                 type="text"
+                 name="ova"
+                 placeholder="Escriba el nombre del OVA aquí"
+                 formControlName="ova"
+                 class="form-control"
+          >
+
+          <!-- Campo programa del OVA -->
+          <label for="programa">Programa</label>
+          <input id="programa"
+                 type="text"
+                 name="programa"
+                 placeholder="Ingrese el programa al que pertenece"
+                 formControlName="programa"
+                 class="form-control"
+          >
+        </div>
+
+        <br>
+
+        <div class="row justify-content-center mt-3">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary btn-block">Crear OVA</button>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-danger btn-block" (click)="cancelarCrearOva()">Cancelar</button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
