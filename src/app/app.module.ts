@@ -7,6 +7,8 @@ import { EditarOvasComponent } from './ova/editar-ovas/editar-ovas.component';
 import { ListarOvasComponent } from './ova/listar-ovas/listar-ovas.component';
 import { CrearOvaComponent } from './ova/crear-ova/crear-ova.component';
 import { DetalleOvaComponent } from './ova/detalle-ova/detalle-ova.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -19,10 +21,12 @@ import { DetalleOvaComponent } from './ova/detalle-ova/detalle-ova.component';
     EditarOvasComponent,
     CrearOvaComponent,
     DetalleOvaComponent,
+    FooterComponent,
+    HeaderComponent,
 
 
 
- 
+
 
   ],
   imports: [
