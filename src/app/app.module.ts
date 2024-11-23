@@ -7,12 +7,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FacultadesComponent } from './facultades/facultades.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
     FacultadesComponent
   ],
   imports: [

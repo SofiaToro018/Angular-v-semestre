@@ -1,0 +1,10 @@
+{
+  "/api/service1": {
+    "target": "http://backend1.example.com",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/service1": ""
+    }
+  }
+}

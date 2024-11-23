@@ -1,0 +1,39 @@
+/* Alinear el texto a la izquierda */
+.titulo {
+  text-align: left;
+  font-family: Inter, sans-serif;
+}
+
+/* Estilo de las leyendas del carrusel */
+.carousel-caption {
+  background-color: rgba(0, 168, 88, 0.7); /* Fondo semi-transparente */
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+  padding: 10px;
+  border-radius: 15px; /* Redondear las esquinas */
+}
+
+/* Redondear las esquinas de las imágenes del carrusel */
+.carousel .carousel-item img {
+  margin-top: 40px; /* Ajusta este valor según sea necesario */
+  border-radius: 15px;
+  width: 100%; /* Asegura que las imágenes se adapten al tamaño del contenedor */
+  height: 350px; /* Puedes ajustar esta altura según tus necesidades */
+  object-fit: cover; /* Mantiene la proporción de las imágenes sin distorsionarlas */
+}
+
+/* Asegurarse de que el contenedor del carrusel tenga un ancho adecuado */
+.container {
+  max-width: 1000px; /* Establecer un max-width para limitar el ancho del carrusel */
+  margin: 0 auto; /* Centrar el contenedor */
+  padding: 0 25px; /* Añadir un pequeño padding para mejorar el espaciado lateral */
+}
+
+/* Opcional: Mejorar los botones de navegación del carrusel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  border-radius: 50%;
+  padding: 10px;
+}
+
