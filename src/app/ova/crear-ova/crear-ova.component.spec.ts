@@ -8,9 +8,9 @@ describe('CrearOvaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CrearOvaComponent]
+      imports: [CrearOvaComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CrearOvaComponent);
     component = fixture.componentInstance;

@@ -1,59 +1,43 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Ova} from "../model/ova";
-import {OvaService} from "../service/ova.service";
-import Swal from "sweetalert2";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { Ova } from '../model/ova';
+import { OvaService } from '../service/ova.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { catchError, tap, throwError } from 'rxjs';
+import { FormsModule, NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crear-ova',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './crear-ova.component.html',
   styleUrls: ['./crear-ova.component.css']
 })
-export class CrearOvaComponent implements OnInit {
-  public crearOvaForm: FormGroup = new FormGroup({
-    ova: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    programa: new FormControl('', [Validators.required, Validators.minLength(4)])
-  });
+export class CrearOvaComponent {
+  ova: Ova = new Ova();
 
-  /**
-   * Constructor del componente
-   * @param router Router de la aplicación
-   * @param formBuilder Formulario de creación de OVA
-   * @param ovaService Servicio de OVA para crear un OVA
-   */
-  constructor(public router: Router, public formBuilder: FormBuilder, private ovaService: OvaService) {
+  constructor(private ovaService: OvaService, private router: Router) {}
 
+  guardarOva() {
+    this.ovaService.crearOva(this.ova).pipe(
+      tap(dato => {
+        console.log(dato);
+        this.irALaListaDeOvas();
+      }),
+      catchError(error => {
+        console.log(error);
+        return throwError(() => new Error(error));
+      })
+    ).subscribe();
   }
 
-  /**
-   * Método que cancela la creación de un OVA
-   */
-  cancelarCrearOva() {
-    this.router.navigate(['/listar']);
+  irALaListaDeOvas() {
+    this.router.navigate(['/ovas']);
+    Swal.fire('OVA registrado', 'El OVA "${this.ova.nombre}" ha sido registrado con éxito', 'success');
   }
 
-  /**
-   * Método que crea un OVA en el servicio
-   * @param ova OVA a crear
-   */
-  crearOva(ova: Ova) {
-    this.ovaService.crearOva(ova).subscribe(
-      (ova: Ova) => {
-        Swal.fire(
-          'OVA creado',
-          `El OVA ${ova.ova} ha sido creado con éxito`,
-          'success'
-        );
-        this.crearOvaForm.reset(); // Resetea el formulario
-        this.router.navigate(['/listar']);
-      });
-  }
-
-  ngOnInit(): void {
-    this.crearOvaForm = this.formBuilder.group({
-      ova: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-      programa: ['', [Validators.required, Validators.minLength(4)]]
-    });
+  onSubmit() {
+    this.guardarOva();
   }
 }
