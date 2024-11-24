@@ -1,56 +1,38 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Ova } from "../model/ova";
-import { map, Observable } from "rxjs";
+import { Observable } from 'rxjs';
+import { Ova } from '../model/ova';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OvaService {
-  private baseUrl: string = "http://"; //TODO: Agregar url del servicio
 
-  constructor(private httpClient: HttpClient) {}
+  private baseURL = "http://3.144.172.190:8080/api/v1/ova-service/ovas";
 
-  /**
-   * Método que obtiene los OVAs
-   * @returns Observable<Ova[]> Lista de OVAs
-   */
-  getOvas(): Observable<Ova[]> {
-    return this.httpClient.get<Ova[]>(this.baseUrl + "/ovas")
-      .pipe(
-        map((result: any) => {
-          console.log(result._embedded.ovas);
-          return result._embedded.ovas;
-        }));
+  constructor(private httpClient: HttpClient) { }
+
+  //este metodo nos sirve para obtener los Ovas
+  obtenerListaDeOvas(): Observable<Ova[]> {
+    return this.httpClient.get<Ova[]>(${this.baseURL});
   }
 
-  /**
-   * Método que obtiene un OVA
-   */
-  getOva(idOva: number): Observable<Ova> {
-    return this.httpClient.get<Ova>(this.baseUrl + '/ovas/' + idOva);
+  //este metodo nos sirve para registrar un Ova
+  registrarOva(Ova: Ova): Observable<Object> {
+    return this.httpClient.post(${this.baseURL}, Ova);
   }
 
-  /**
-   * Método que crea un OVA
-   * @param ova OVA a crear
-   */
-  crearOva(ova: Ova): Observable<Ova> {
-    return this.httpClient.post<Ova>(this.baseUrl + "/ovas", ova);
+  //este metodo sirve para actualizar el Ova
+  actualizarOva(id: number, Ova: Ova): Observable<Object> {
+    return this.httpClient.put(${this.baseURL}/${id}, Ova);
   }
 
-  /**
-   * Método que edita un OVA
-   * @param ova OVA a editar
-   */
-  editarOva(ova: Ova): Observable<Ova> {
-    return this.httpClient.put<Ova>(this.baseUrl + "/ovas/" + ova.id, ova);
+  //este metodo sirve para obtener o buscar un Ova
+  obtenerOvaPorId(id: number): Observable<Ova> {
+    return this.httpClient.get<Ova>(${this.baseURL}/${id});
   }
 
-  /**
-   * Método que elimina un OVA
-   */
-  borrarOva(idOva: number): Observable<any> {
-    return this.httpClient.delete(this.baseUrl + "/ovas/" + idOva);
+  eliminarOva(id: number): Observable<Object> {
+    return this.httpClient.delete(${this.baseURL}/${id});
   }
 }
