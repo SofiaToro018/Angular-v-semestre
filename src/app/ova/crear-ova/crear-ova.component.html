@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de OVA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Card for form container -->
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Registro de OVA</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #ovaForm="ngForm">
+
+            <!-- Campo ID -->
+            <div class="form-group">
+              <label for="id">ID: </label>
+              <input
+                type="number"
+                class="form-control"
+                id="id"
+                [(ngModel)]="ova.id"
+                name="id"
+                required
+                placeholder="Digite el ID"
+                #id="ngModel"
+              />
+              <div class="alert alert-danger" *ngIf="id.invalid && (id.dirty || id.touched)">
+                <div *ngIf="id.errors?.['required']">Digite el ID por favor.</div>
+              </div>
+            </div>
+
+            <!-- Campo Nombre -->
+            <div class="form-group">
+              <label for="nombre">Nombre: </label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                [(ngModel)]="ova.nombre"
+                name="nombre"
+                required
+                minlength="4"
+                maxlength="50"
+                placeholder="Digite el nombre del OVA"
+                #nombre="ngModel"
+              />
+              <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div *ngIf="nombre.errors?.['required']">Digite el nombre por favor.</div>
+                <div *ngIf="nombre.errors?.['minlength']">El nombre debe contener al menos 4 caracteres.</div>
+                <div *ngIf="nombre.errors?.['maxlength']">El nombre no debe exceder los 50 caracteres.</div>
+              </div>
+            </div>
+
+            <!-- Campo Intensidad -->
+            <div class="form-group">
+              <label for="intensidad">Intensidad: </label>
+              <input
+                type="number"
+                class="form-control"
+                id="intensidad"
+                [(ngModel)]="ova.intensidad"
+                name="intensidad"
+                required
+                min="1"
+                placeholder="Digite la intensidad"
+                #intensidad="ngModel"
+              />
+              <div class="alert alert-danger" *ngIf="intensidad.invalid && (intensidad.dirty || intensidad.touched)">
+                <div *ngIf="intensidad.errors?.['required']">Digite la intensidad por favor.</div>
+                <div *ngIf="intensidad.errors?.['min']">La intensidad debe ser al menos 1.</div>
+              </div>
+            </div>
+
+            <!-- Campo Semestre -->
+            <div class="form-group">
+              <label for="semestre">Semestre: </label>
+              <input
+                type="number"
+                class="form-control"
+                id="semestre"
+                [(ngModel)]="ova.semestre"
+                name="semestre"
+                required
+                min="1"
+                max="12"
+                placeholder="Digite el semestre"
+                #semestre="ngModel"
+              />
+              <div class="alert alert-danger" *ngIf="semestre.invalid && (semestre.dirty || semestre.touched)">
+                <div *ngIf="semestre.errors?.['required']">Digite el semestre por favor.</div>
+                <div *ngIf="semestre.errors?.['min']">El semestre debe ser al menos 1.</div>
+                <div *ngIf="semestre.errors?.['max']">El semestre no puede exceder 12.</div>
+              </div>
+            </div>
+
+            <!-- Botón Guardar -->
+            <button class="btn btn-success btn-block" [disabled]="!ovaForm.form.valid">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts necesarios para Bootstrap, Popper y jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
